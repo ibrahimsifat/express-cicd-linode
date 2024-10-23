@@ -33,6 +33,7 @@ jobs:
   update_ssh_linode:
     name: Update SSH Linode
     runs-on: ubuntu-latest
+    needs: push-to-registry
     steps:
       - name: SSH to Linode
         uses: appleboy/ssh-action@master
