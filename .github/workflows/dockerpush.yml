@@ -29,3 +29,16 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
+
+  update_ssh_linode:
+    name: Update SSH Linode
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH to Linode
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.LINODE_HOST }}
+          username: ${{ secrets.LINODE_USERNAME }}
+          password: ${{ secrets.LINODE_PASSWORD }}
+          port: ${{ secrets.LINODE_PORT }}
+          script: bash update.sh
